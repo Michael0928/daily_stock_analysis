@@ -1016,6 +1016,7 @@ class GeminiAnalyzer:
         keys = get_api_keys_for_model(model, config)
         if keys:
             effective_kwargs["api_key"] = keys[0]
+        # Always call extra_litellm_params (sets api_base, custom_llm_provider, etc.)
         effective_kwargs.update(extra_litellm_params(model, config))
         return litellm.completion(**effective_kwargs)
 
