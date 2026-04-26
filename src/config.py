@@ -2340,9 +2340,7 @@ def extra_litellm_params(model: str, config: Config) -> Dict[str, Any]:
             params["api_base"] = config.openai_base_url
             params["custom_llm_provider"] = "openai"
             # Strip the provider prefix so litellm sends the correct model name to the API
-            stripped_model = model.split("/", 1)[1]
-            params["model"] = stripped_model
-    return params
+        # Set api_base + custom_llm_provider; keep full model name
     if model.startswith("openai/") or "/" not in model:
         if config.openai_base_url:
             params["api_base"] = config.openai_base_url
